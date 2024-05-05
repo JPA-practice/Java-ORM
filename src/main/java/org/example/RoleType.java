@@ -1,2 +1,5 @@
-package org.example;public enum RoleType {
+package org.example;
+
+public enum RoleType{
+    ADMIN, USER
 }
