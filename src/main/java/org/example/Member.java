@@ -12,9 +12,11 @@ public class Member {
 
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키 생성을 데이터베이스에 위임
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE) -> 데이터 베이스 시퀸스를 활용해서 기본키 할당(MYSQL은 제공하지 않아 사용불가)
     private String id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, length = 10) //칼럼 제약조건을 넣을 수 있음
     private String username;
 
     private Integer age;

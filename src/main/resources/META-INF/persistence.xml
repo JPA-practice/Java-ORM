@@ -18,6 +18,9 @@
 <!--            java(카멜표기) db(언더스코어표기) 법에 맞추어 column명을 적절히 변환하여 db create문을 생성하는 옵션-->
             <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
 
+<!--            pk 생성 전략 사용을 위한 옵션-->
+            <property name="hibernate.id.new_generator_mappings" value="true"/>
+
 <!--            db schema auto create -->
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
