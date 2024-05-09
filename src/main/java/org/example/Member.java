@@ -7,7 +7,14 @@ import javax.persistence.*;  //**
 import java.util.Date;
 
 @Entity
-@Table(name="MEMBER")
+@Table(name="MEMBER",
+        uniqueConstraints = { //유니크 제약조건 -> 테이블 생성을 JPA를 통해 하지 않는 경우에는 작성하지 않아도 됨
+        @UniqueConstraint(
+                name = "NAME_AGE_UNIQUE",
+                columnNames = {"NAME","AGE"}
+        )
+        }
+)
 public class Member {
 
     @Id
