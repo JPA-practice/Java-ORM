@@ -21,7 +21,7 @@ public class Main {
 
 
             tx.begin(); //트랜잭션 시작
-            logic(em);  //비즈니스 로직
+            saveLogic(em);  //비즈니스 로직
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public class Main {
         emf.close(); //엔티티 매니저 팩토리 종료
     }
 
-    public static void logic(EntityManager em) {
+    public static void saveLogic(EntityManager em) {
 
         String id = "id1";
         Member member = new Member();
