@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -107,6 +108,60 @@ public class Main {
         for (Member m: members) {
             System.out.println("member.username = " + m.getUserName());
         }
+
+    }
+
+
+    //연관관계의 주인이 아닌자가 관련 값을 수정하는 경우
+    public static void testSaveNonOwner(EntityManager em){
+
+        //create member3
+        Member member3 = new Member("member3", "회원3");
+        em.persist(member3);
+
+        //create member4
+        Member member4 = new Member("member4", "회원4");
+        em.persist(member4);
+
+
+        //create team4
+        Team team4 = new Team("team4", "팀4");
+
+        //team은 member와의 연관관계에서 주인이 아니다.
+        //그렇기 때문에 team은 member와의 DB레벨에서 연관관계를 수정/추가할 수 없다
+        team4.getMembers().add(member3);
+        team4.getMembers().add(member4);// DB입장에서는 아무 의미 없는 코드.. -> member3/4의 team칼럼은 null로 저장된다
+
+        em.persist(team4);
+
+        /*
+        연관 관계를 추가하고 싶으면, 연관관계의 주인에서 추가해야한다
+        member3.setTeam(team4);
+         */
+
+
+    }
+
+
+    //DB에서는 의미가 없다고는 했지만, 객체 관점에서는 의미가 있다!
+    //따라서 양방향으로 모두 추가해주어야 한다
+    public static void testORM_TwoWay(EntityManager em){
+
+        //팀5 생성 및 저장
+        Team team5 = new Team("team5", "팀5");
+        em.persist(team5);
+
+        //멤버 생성
+        Member member6 = new Member("member6", "회원6");
+
+        //(중요) 팀 -> 멤버 , 멤버 -> 팀 모두 양방향으로 등록해주기 !!  => 따라서 이를 하나의 메서드로 만들어서 사용하는게 좋다! (member.setTeam참고)
+        member6.setTeam(team5);
+        team5.getMembers().add(member6);//만약에 이 부분을 생략했다고 하면, db상에는 둘의 관계가 저장되지만, team5.getMembers()는 여전히 빈값이다(jpa가 해결해주지 않는 이상..)
+
+
+        em.persist(member6);
+
+
 
     }
 
