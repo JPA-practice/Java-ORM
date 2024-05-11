@@ -19,8 +19,10 @@ public class Member {
 
     private String userName;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
+    @ManyToOne//테이블 관계에서 ManyToOne은 항상 연관관계의 주인이다
+    @JoinColumn(name = "TEAM_ID") //member 는 team 외래키의 주인! (멤버 테이블에 fk가 존재함)
+    //외래키의 주인이므로 읽기 + 수정,쓰기가 가능하다
+    //(member는 team을 변경가능하지만, team은 member를 변경불가)
     private Team team;
 
 

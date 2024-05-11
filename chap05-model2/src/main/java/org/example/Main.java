@@ -24,6 +24,10 @@ public class Main {
             //비즈니스 로직
             testSave(em);
             testFind(em);
+            updateRelation(em);
+
+
+            biDirection(em);
 
             tx.commit();//트랜잭션 커밋
 
@@ -90,6 +94,19 @@ public class Main {
         member2.setTeam(null)
         em.remove(team1)
          */
+
+    }
+
+
+
+    public static void biDirection(EntityManager em){
+
+        Team team = em.find(Team.class, "team1");
+        List<Member> members = team.getMembers(); //팀에서 회원을 조회(객체 참조)
+
+        for (Member m: members) {
+            System.out.println("member.username = " + m.getUserName());
+        }
 
     }
 
