@@ -165,4 +165,25 @@ public class Main {
 
     }
 
+
+    //DB에서는 의미가 없다고는 했지만, 객체 관점에서는 의미가 있다!
+    //따라서 양방향으로 모두 추가해주어야 한다 -> setter에 추가해두기!!
+    public static void testORM_TwoWay_Refactor(EntityManager em){
+
+        //팀5 생성 및 저장
+        Team team6 = new Team("team6", "팀6");
+        em.persist(team6);
+
+        //멤버 생성
+        Member member7 = new Member("member7", "회원7");
+
+        //(중요) 팀 -> 멤버 , 멤버 -> 팀 모두 양방향으로 등록해주기 !!  => 따라서 이를 하나의 메서드로 만들어서 사용하는게 좋다! (member.setTeam참고)
+        member7.setTeam(team6);
+
+        em.persist(member7);
+
+
+
+    }
+
 }

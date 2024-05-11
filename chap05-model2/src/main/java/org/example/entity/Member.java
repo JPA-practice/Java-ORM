@@ -36,9 +36,17 @@ public class Member {
 
     }
 
-    //연관관계 설정
+    //연관관계 설정( 양방향으로 관계를 설정하면 신경써 줄것이 많다..) 
     public void setTeam(Team team){
+
+        //주의! 기존팀과의 관계를 삭제하지 않으면, team.members에는 여전히 멤버가 남아있게된다!
+        //변경시에는 기존 관계를 삭제해주어야 한다.
+        if(this.team != null){
+            this.team.getMembers().remove(this);
+        }
+
         this.team = team;
+        team.getMembers().add(this); //양방향 관계인경우 객체 관점에서는 양방향으로 추가해주는게 맞다
     }
 
 
