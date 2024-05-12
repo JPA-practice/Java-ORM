@@ -36,7 +36,7 @@ public class Member {
 
     }
 
-    //연관관계 설정( 양방향으로 관계를 설정하면 신경써 줄것이 많다..) 
+    //연관관계 설정( 양방향으로 관계를 설정하면 신경써 줄것이 많다..)
     public void setTeam(Team team){
 
         //주의! 기존팀과의 관계를 삭제하지 않으면, team.members에는 여전히 멤버가 남아있게된다!

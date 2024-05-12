@@ -1,9 +1,8 @@
 package org.example.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Item {
@@ -19,6 +18,18 @@ public class Item {
 
     private int stockQuantity;
 
+// 양방향 참조는 꼭 필요할때만 설정할 것 ! 상품에서 주문상품을 참조할 일은 거의 없다!
+//    @OneToMany(mappedBy = "order")
+//    private List<OrderItem> orderItems = new ArrayList<>();
+
+
+//    public List<OrderItem> getOrderItems() {
+//        return orderItems;
+//    }
+//
+//    public void setOrderItems(List<OrderItem> orderItems) {
+//        this.orderItems = orderItems;
+//    }
 
     public Long getId() {
         return id;

@@ -1,8 +1,6 @@
 package org.example;
 
-import org.example.entity.Member;
-import org.example.entity.Order;
-import org.example.entity.OrderStatus;
+import org.example.entity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,7 +21,7 @@ public class Main {
         try {
 
             tx.begin(); //트랜잭션 시작
-            logic(em);
+            saveLogic(em);
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
@@ -37,39 +35,39 @@ public class Main {
     }
 
 
-    public static void logic(EntityManager em) {
+    public static void saveLogic(EntityManager em) {
 
 
         Member member = new Member();
-        member.setName("Jason");
-
-        //등록
-        em.persist(member);
-
+        member.setName("지영");
 
         Order order = new Order();
-        order.setMemberId(member.getId());
-        order.setStatus(OrderStatus.ORDER);
 
+        em.persist(member);
         em.persist(order);
 
-
-        //외래 키로 다시 조회하는 방법(외래키를 조회함) -> 객체지향이 아님
-        Order findOrder = em.find(Order.class, order.getId());
-        Member findMember = em.find(Member.class, findOrder.getMemberId());
-
-        System.out.println("==================================");
-        System.out.println(findMember.getName());
-        System.out.println("==================================");
-        //객체지향 적인 방법 (객체를 참조함)
-//        Order newOrder = em.find(Order.class, order.getId());
-//        Member newMember = newOrder.getMember();
-
+        order.setMember(member);
 
         //삭제
-        em.remove(member);
-        em.remove(order);
+//        em.remove(member);
+//        em.remove(order);
 
     }
+
+
+    public static void logic(EntityManager em, Long orderId){
+
+        Order order = em.find(Order.class, orderId);
+        Member member = order.getMember();// 주문회원 참조
+
+        //주문 상품 참조
+        OrderItem orderItem = order.getOrderItems().get(0);
+        Item item = orderItem.getItem();
+
+    }
+
+
+
+
 
 }
