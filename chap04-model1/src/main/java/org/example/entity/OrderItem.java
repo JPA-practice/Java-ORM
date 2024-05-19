@@ -60,13 +60,7 @@ public class OrderItem {
     }
 
     public void setItem(Item item) {
-
-        if(this.getItem() != null){
-            item.getOrderItems().remove(this);
-        }
-
         this.item = item;
-        item.getOrderItems().add(this);
     }
 
     public int getOrderPrice() {
