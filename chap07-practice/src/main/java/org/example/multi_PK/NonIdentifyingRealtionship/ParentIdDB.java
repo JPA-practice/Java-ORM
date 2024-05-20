@@ -33,10 +33,6 @@ public class ParentIdDB implements Serializable {
         if(!(o instanceof ParentIdDB)) //올바른 타입인지 검사
             return false;
         ParentIdDB pi = (ParentIdDB) o;// 같은 클래스임이 검증되었으니 형변환
-        System.out.println(pi.id1);
-        System.out.println(id1);
-        System.out.println(pi.id2);
-        System.out.println(id2);
         return pi.id1 == id1 && pi.id2 == id2; //핵심필드의 일치여부 검사
     }
 
