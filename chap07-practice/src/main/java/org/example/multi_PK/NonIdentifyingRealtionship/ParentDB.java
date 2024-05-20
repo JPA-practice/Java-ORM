@@ -1,4 +1,4 @@
-package org.example.multi_PK;
+package org.example.multi_PK.NonIdentifyingRealtionship;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,15 +14,15 @@ import javax.persistence.IdClass;
  */
 
 @Entity
-@IdClass(NonIdentifyingParentId.class)
-public class NonIdentifyingParent {
+@IdClass(ParentIdDB.class) //데이터베이스에 맞춘 방식
+public class ParentDB {
 
     @Id
-    @Column(name = "PARENT_ID1")
+    @Column(name = "PARENT_DB_ID1")
     private String id1;
 
     @Id
-    @Column(name = "PARENT_ID2")
+    @Column(name = "PARENT_DB_ID2")
     private String id2;
 
 
