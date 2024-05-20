@@ -1,6 +1,8 @@
 package org.example.entity;
 
 
+import org.example.entity.item.Item;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,15 @@
-package org.example.entity;
+package org.example.entity.item;
 
+
+import org.example.entity.Category;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)//상속을 단일 테이블 방식으로 구현
+@DiscriminatorColumn(name = "DTYPE")//구분 칼럼 추가
 public class Item {
 
     @Id
