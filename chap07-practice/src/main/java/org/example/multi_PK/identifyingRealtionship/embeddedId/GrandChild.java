@@ -9,7 +9,7 @@ public class GrandChild {
     @EmbeddedId
     private GrandChildId id;
 
-    @MapsId // PK
+    @MapsId("childId") // grandChildId.childId와 mapping
     @ManyToOne //FK 외래키 맵핑(연관관계 맵핑)
     @JoinColumns(
             {
