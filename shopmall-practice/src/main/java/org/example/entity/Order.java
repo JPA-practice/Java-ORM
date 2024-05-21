@@ -16,17 +16,17 @@ public class Order extends BaseEntity{
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //xtoOne의 경우 디폴트가 즉시로딩이므로, 지연로딩으로 변경
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
 
     //일대일관계 -> 어느쪽에서 fk,관계의 주인이 되던지 상관없지만
     //로직상 주문에서 배송에 접근할 일이 많으므로 ORDERS가 관계의 주인이됨
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 

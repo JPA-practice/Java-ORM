@@ -32,7 +32,7 @@ public class Category {
 
 
     //카테고리의 계층구조(포함관계) 구현
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
 

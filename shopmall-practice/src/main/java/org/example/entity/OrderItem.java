@@ -20,12 +20,12 @@ public class OrderItem {
 //    private Long itemId;
 
     //단방향 참조임 -> get/set에 따로 처리 필요없음
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
     //단방향 참조임 -> get/set에 따로 처리 필요없음
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
