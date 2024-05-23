@@ -1,6 +1,8 @@
 package org.example.entity;
 
 
+import org.example.entity.valueType.Address;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,9 +17,11 @@ public class Delivery {
     private Order order;
 
 
-    private String city;
-    private String street;
-    private String zipcode;
+    @Embedded
+    private Address address; //공통되는 내역들을 임베디드 값 타입으로 묶어서 객체지향 적으로
+//    private String city;
+//    private String street;
+//    private String zipcode;
 
 
     @Enumerated(EnumType.STRING)
@@ -43,28 +47,12 @@ public class Delivery {
         this.order = order;
     }
 
-    public String getCity() {
-        return city;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public DeliveryStatus getStatus() {
